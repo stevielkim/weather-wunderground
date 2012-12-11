@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Stephanie Kim">
+    <meta name="description" content="Snow Fall Requests">
+    <link href="css/layout.css" rel="stylesheet" />
+    <title>Snow Fall</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+
+</head>
+
+<body>
+    <div id ="wrapper">
+        <header>
+            <h1>Pray for Snow!!</h1>
+        </header>
+        <section id="grab_data">
+            <input type="text" placeholder="Enter something" id="name" />
+            <button type="submit"id="find">Find me a location</button>
+
+            <div class="hidden empty_field_error">
+                <div class="arrow"></div>
+                <p>Please enter a location</p>
+            </div>
+        </section>
+        <section id="returned_data"></section>
+        <footer></footer>
+    </div>
+     
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="libs/jquery.jsonp-2.4.0.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
