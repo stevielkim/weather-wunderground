@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Stephanie Kim">
+    <meta name="description" content="Snow Fall Requests">
+    <link href="css/layout.css" rel="stylesheet" />
+    <title>Snow Fall</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+
+</head>
+
+<body>
+    <div id ="wrapper">
+        <header>
+            <h1>Pray for Snow!!</h1>
+        </header>
+        <section id="grab_data">
+            <h3>Pick a mountain from the list</h3>
+            <div class="styled-select">
+                <select id="location">
+                    <option selected="selected">Mountains</option>
+                    <option id="cm" value="Crystal Mountain, WA">Crystal Mountain</option>
+                    <option id="sp" value="47.7344075,-121.0883275">Stevens Pass</option>
+                    <option id="sq" value="Snoqualmie Pass, WA">Snoqualmie Pass</option>
+                    <option id="mr" value="47.2925,-120.4">Mission Ridge</option>
+                    <option id="mb" value="48.8573,-121.6689">Mount Baker</option>
+                    <option id="mb" value="White Pass, WA">White Pass</option>     
+                </select>
+                 <div class="small_arrow"></div>
+            </div>
+                <div class="hidden empty_field_error">
+                    <div class="arrow"></div>
+                    <p>Please enter a location</p>
+                </div>
+            </section>
+            <section id="returned_data"></section>
+        </section>
+     
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="libs/jquery.jsonp-2.4.0.min.js"></script>
+    <script src="js/select.js"></script>
+</body>
+</html>
