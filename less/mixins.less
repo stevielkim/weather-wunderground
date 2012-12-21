@@ -1,0 +1,33 @@
+/****** Mixins ******/
+
+.box_shadow (@shadow: 1px 1px 2px 1px #545555) {
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    -ms-box-shadow: @shadow;
+    -o-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+
+.border-radius (@radius: 3px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.transition(@transition) {
+    -moz-transition: @transition;
+    -webkit-transition: @transition;
+    -o-transition: @transition;
+    -ms-transition: @transition;
+    transition: @transition;
+}
+
+.transform (@transform) {
+    -moz-transform: @transform;
+    -webkit-transform: @transform;
+    -o-transform: @transform;
+    -ms-transform: @transform;
+    transform: @transform;
+}

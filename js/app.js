@@ -6,18 +6,20 @@ $(function(){
     $('#find').click(function(){
         var $this = $(this);
         var location_input = $('#name').val();
+        function errors(){
+            $(".empty_field_error").show();
+        }
+        
         var base_url = "http://api.wunderground.com/api/51c27f40bbfecefc/conditions/q/";
         var j = ".json";
 
-        if(location_input === "undefined" || location_input === '' ){
-            $(".empty_field_error").show();
-
+        if(location_input === '' ){
+            errors();
         }
         else {
             $(".empty_field_error").hide();
             // url including base url with api key and query type, datatype is jsonp
             $.jsonp({
-                //the location_select should bring the value
                 url: base_url + location_input + j + "?callback=?",
 
                  // Success callback function returning specific data results
@@ -40,6 +42,8 @@ $(function(){
                     current.wind_mph + "mph</p>");
                 }
             });
+
         }
+
     });
 });

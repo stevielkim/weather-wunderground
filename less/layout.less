@@ -1,5 +1,6 @@
 /* Layout */
-/****** Mixins ******/
+@import "mixins.less";
+
 .arrow {
   width: 0px;
   height: 0px;
@@ -11,10 +12,12 @@
   border-bottom: 12px solid black;
   margin-left: 68px;
 }
+
 body {
-  background-color: #d3f3ff;
-  font: 400 1em/1.4em Helvetica, Arial, sans-serif;
+    background-color: #d3f3ff;
+    font: 400 1em/1.4em Helvetica, Arial, sans-serif;
 }
+
 .empty_field_error {
   background-color: #000000;
   border-radius: 10px 10px 10px 10px;
@@ -27,31 +30,34 @@ body {
   text-align: center;
   padding: 10px 0px;
 }
-#grab_data button {
-  font-size: .8em;
-  height: 30px;
-}
-#grab_data input {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  height: 20px;
-  padding: 3px;
-  width: 200px;
+#grab_data {
+    button {
+        font-size: .8em;
+        height: 30px;
+    }
+    input {
+        .border-radius;
+        height: 20px;
+        padding: 3px;
+        width: 200px;
+    }
 }
 h1 {
-  font: 30px 'Montserrat', sans-serif;
-  text-align: center;
+    font: 30px 'Montserrat', sans-serif;
+    text-align: center;
 }
 .hidden {
   display: none;
 }
+
+#returned_data {
+    
+}
 #returned_data p {
   margin-left: 5px;
 }
-#wrapper {
-  width: 302px;
-  margin: 100px auto;
+
+#wrapper{
+    width: 302px;
+    margin: 100px auto;
 }
