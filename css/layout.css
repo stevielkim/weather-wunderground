@@ -12,7 +12,7 @@
   margin-left: 68px;
 }
 body {
-  background-color: #d3f3ff;
+  background-color: #e3f6ff;
   font: 400 1em/1.4em Helvetica, Arial, sans-serif;
 }
 .empty_field_error {
@@ -41,12 +41,20 @@ body {
   padding: 3px;
   width: 200px;
 }
+#grab_data h3 {
+  text-align: center;
+}
 h1 {
   font: 30px 'Montserrat', sans-serif;
   text-align: center;
 }
 .hidden {
   display: none;
+}
+/*  Select Styles  */
+#location {
+  width: 250px;
+  height: 30px;
 }
 #returned_data p {
   margin-left: 5px;
