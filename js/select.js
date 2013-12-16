@@ -9,22 +9,24 @@ $(function(){
         var j = ".json";
 
         // url including base url with api key and query type, datatype is jsonp
-        $.jsonp({
-
-            //the location_select should bring the value
+        $.ajax({
             url: base_url + location_select + j + "?callback=?",
+            dataType: 'jsonp',
+            statusCode: {
+            // TODO: throw error messages
+            },
 
              // Success callback function returning specific data results
-             // from Wunderground API in jsonp format & is inserted in
+             // from Wunderground API & is inserted in
              // the DOM
             success: function(data){
-                // create object literal
                 var current = {
                     name_location: data.current_observation.display_location.city,
                     temp_f: data.current_observation.temp_f,
                     weather: data.current_observation.weather,
                     wind_mph: data.current_observation.wind_mph
                 };
+                console.log(data);
                 var returned_data = $('#returned_data');
                 returned_data.html("<h3>Results of " + current.name_location +
                 "</h3>"  + "<p>Temperature: " + current.temp_f + "</p>" +

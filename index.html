@@ -6,30 +6,37 @@
     <meta name="description" content="Snow Fall Requests">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <title>Snow Fall</title>
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/layout.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 </head>
 
-<body>
-    <div id ="wrapper">
-        <article>
-            <header>
-                <h1>Pray for Snow!!</h1>
-            </header>
-            <section id="grab_data">
+<body id="weather_app">
+    <div class="col-xs-12">
+        <header>
+            <h1>Pray for Snow!!</h1>
+        </header>
+
+        <section id="get_location">
+            <div>
+                <input id="check_location" type="checkbox" />
+                <label>Would you like to use your current location to find a mountain close by?</label>
+            </div>
+            <div>
                 <input type="text" placeholder="Enter location" id="location_name" />
                 <button type="submit"id="find">Find snow!</button>
-
-                <div class="hidden empty_field_error">
-                    <div class="arrow"></div>
-                    <p>Please enter a valid location</p>
-                </div>
-            </section>
-            <section id="returned_data"></section>
-        </article>
+            </div>
+            <div class="hidden empty_field_error">
+                <div class="arrow"></div>
+                <p>Please enter a valid location</p>
+            </div>
+        </section>
+        <section id="returned_data"></section>
     </div>
      
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="libs/bootstrap/js/handlebars-v1.1.2.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
     <script src="libs/jquery.jsonp-2.4.0.min.js"></script>
     <script src="js/app.js"></script>
 </body>
