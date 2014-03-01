@@ -8,18 +8,10 @@ $(function(){
         var base_url = "http://api.wunderground.com/api/51c27f40bbfecefc/conditions/q/";
         var j = ".json";
 
-        // url including base url with api key and query type, datatype is jsonp
         $.ajax({
-            url: base_url + location_select + j + "?callback=?",
-            dataType: 'jsonp',
-            statusCode: {
-            // TODO: throw error messages
-            },
-
-             // Success callback function returning specific data results
-             // from Wunderground API & is inserted in
-             // the DOM
-            success: function(data){
+            url : base_url + location_select + j + "&cb=?",
+            dataType : "jsonp",
+            success : function(data) {
                 var current = {
                     name_location: data.current_observation.display_location.city,
                     temp_f: data.current_observation.temp_f,
@@ -32,6 +24,10 @@ $(function(){
                 "</h3>"  + "<p>Temperature: " + current.temp_f + "</p>" +
                 "<p>Current Weather: " + current.weather + "</p>" + "<p>Wind Gusts: " +
                 current.wind_mph + "mph</p>");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(thrownError);
             }
         });
         
