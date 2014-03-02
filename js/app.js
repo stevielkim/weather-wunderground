@@ -16,9 +16,7 @@ WEATHER.LocationApp = (function($) {
     message = {
         errorLocation: 'Please choose another location or check your spelling',
         geoLocationError: 'Geolocation is not supported in your browser'
-    },
-
-    initDeferred = $.Deferred();
+    };
 
     // user options
     wl.config = {};
@@ -33,9 +31,12 @@ WEATHER.LocationApp = (function($) {
     // bindhandlers
     wl.bindHandlers = function(){
         var parentWrapper = this.config.parentWrapper, parent = this;
-        // TODO: bind all event handlers here 
+        // bind event handlers here 
         $(parentWrapper).on('click', '#checkGeoLocation', function(e){ parent.checkGeoLocation(e); });
-        $(parentWrapper).on('click', '#locationButton', function() { parent.processLocation(); });
+        $(parentWrapper).on('click', '#locationButton', function() { parent.inputProcessLocation(); });
+
+        $('#checkGeoLocation').prop('checked', false);
+        $('#location_name').val('');
     };
 
 
@@ -48,6 +49,7 @@ WEATHER.LocationApp = (function($) {
         var isChecked = $target.is(':checked');
 
         if (isChecked === true) {
+            $('#location_name').val('');
             this.currentGeolocation();
         }
     };
@@ -80,7 +82,7 @@ WEATHER.LocationApp = (function($) {
     */
     wl.geoLocationData = function(latLong){
 
-        var userLocationUrl = this.config.wunderground_url + 'geolookup/q/' + latLong + ".json?callback=?";
+        var userLocationUrl = this.config.wunderground_url + 'conditions/q/' + latLong + ".json?callback=?";
 
         if (userLocationUrl !== undefined) {
             $(".empty_field_error").hide();
@@ -89,18 +91,9 @@ WEATHER.LocationApp = (function($) {
                 url: userLocationUrl,
                 dataType: 'jsonp',
                 statusCode: {
-                    // TODO: enter status codes here
                 }
             }).done(function(data){
-
-                // same problem at work - need to understand deferreds better
-                // when the deferred is resolved then the done callbacks are called
-                //  so the deferred needs to be the currentGeolocation and the doen callback needs to be 
-                console.log("data", data);
-            var weather_html = ("<h3>Results of " + data.location.city + "</h3>" + '<img src="http://icons.wxug.com/logos/PNG/wundergroundLogo_black_horz.png" width="200"</img>');
-
-            $('#returned_data').append(weather_html);
-
+                wl.renderResponse(data);
             });
 
         } else {
@@ -112,10 +105,9 @@ WEATHER.LocationApp = (function($) {
     };
 
     // for user input field
-    wl.processLocation = function() {
+    wl.inputProcessLocation = function() {
         var location_input = $('#location_name').val(),
             locationUrl = this.config.wunderground_url + 'conditions/q/' + location_input + ".json?callback=?";
-
 
         if (location_input === '') {
             $(".empty_field_error").fadeIn();
@@ -123,6 +115,7 @@ WEATHER.LocationApp = (function($) {
                 $(".empty_field_error").fadeOut(300);
             }, 3000);
         } else {
+            $('#checkGeoLocation').prop('checked', false);
             $(".empty_field_error").hide();
             // url including base url with api key and query type, datatype is jsonp
             $.ajax({
@@ -132,38 +125,42 @@ WEATHER.LocationApp = (function($) {
                     // TODO: enter status codes here
                 }
             }).done(function(data){
-                wl.renderLocation(data);
+                // render the html for input response
+                wl.renderResponse(data);
             });
         }
     };
 
     // TODO: add a link for ski specific wunderground page: http://www.wunderground.com/ski/wa/stevens_pass_resort.html
-    // TODO: create a drop down for "did you mean these locations" for response when not a direct hit but still given a resonse
-    wl.renderLocation = function(data) {
-        if (data.current_observation !== undefined) {
-            var weather_html;
+    // TODO: create a drop down for "did you mean these locations" for response when not a direct hit but still given a response
 
-            // console.log(data);
-            // when there is a reponse but no match it returns undefined for data.current_observation
-            
+    wl.renderResponse = function(data){
+        if (data.current_observation !== undefined) {
             //  TODO: use handelbar templates and expressions
-            weather_html = ("<h3>Results of " + data.current_observation.display_location.city +
+            var weather_html = ("<h3>Results of " + data.current_observation.display_location.city +
             "</h3>"  + "<p>Temperature: " + data.current_observation.temp_f + "</p>" +
             "<p>Current Weather: " + data.current_observation.weather + "</p>" + "<p>Wind Gusts: " +
             data.current_observation.wind_mph + "mph</p>" + '<img src="http://icons.wxug.com/logos/PNG/wundergroundLogo_black_horz.png" width="200"</img>');
 
-            $('#returned_data').append(weather_html);
-                
-            $('#location_name').focus(function() {
-                 $(this).val('');
-                 $('#returned_data').detach();
-            });
+            $('#returned_data').html(weather_html);
+            wl.clearData();
         } else {
-            $(".empty_field_error").fadeIn();
-            setTimeout(function(){
-                $(".empty_field_error").fadeOut(300);
-            }, 3000);
+            wl.errorResponse();
         }
+    };
+
+
+    wl.clearData = function(){
+        $('#location_name').focus(function() {
+             $(this).val('');
+        });
+    };
+
+    wl.errorResponse = function() {
+        $(".empty_field_error").fadeIn();
+        setTimeout(function(){
+            $(".empty_field_error").fadeOut(300);
+        }, 3000);
     };
         
     return wl;
