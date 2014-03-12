@@ -5,7 +5,7 @@ $(function(){
     $("#location").change(function(){
         // try to make this an object literal with sessionStorage
         var location_select = $(this).val();
-        var base_url = "http://api.wunderground.com/api/51c27f40bbfecefc/conditions/q/";
+        var base_url = "http://api.wunderground.com/api/your_api_key/conditions/q/";
         var j = ".json";
 
         // url including base url with api key and query type, datatype is jsonp

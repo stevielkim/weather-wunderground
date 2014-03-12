@@ -9,7 +9,7 @@ WEATHER.LocationApp = (function($) {
     defaultConfig = {
         // this will contain defaults like urls etc
         parentWrapper: '#get_location',
-        wunderground_url: 'http://api.wunderground.com/api/51c27f40bbfecefc/'
+        wunderground_url: 'http://api.wunderground.com/api/your_api_key/'
     },
 
     // Messages
